@@ -1,0 +1,84 @@
+*{
+    font-family: 'Outfit', sans-serif;
+}
+
+
+#headline-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+}
+#page-headline {
+    font-size: 50px; 
+}
+
+
+#upper-box-container {
+    display: flex;
+    flex-direction: row;
+    gap: -20px;
+ 
+}
+
+
+#graph-headline{
+
+    font-size: 30px;
+}
+
+#last-week-alerts-container {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#last-attack-container {
+    
+    width:40%;
+    position: relative;
+    right:10px;
+    height: 450px;
+    top: 50px;
+    border-color: black;
+    display: flex ;
+    flex-direction: column;
+    border: 1px solid #000; /* 2px wide solid black border */
+    align-items: center;
+}
+
+#red-background{
+    background-color:#BF4545;
+    width: 100%;
+    display: flex;
+   justify-content: center;
+   height: 20%;
+   align-items: center;
+}
+
+.last-alert-text{
+    font-size: 40px;
+}
+#red-background2{
+    background-color: #BF4545;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 10%;
+    align-items: center;
+    
+}
+
+#today-num-of-alerts-headline{
+    font-size: 30px;
+}
+#today-num-of-alerts{
+    position: relative;
+    font-size: 35px;
+    top: -25px;
+    
+}

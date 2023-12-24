@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="./styles/main.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap" rel="stylesheet">
+
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+</head>
+<body>
+    <div id="headline-container">
+        <h1 id="page-headline">ATTACK ALERTS ON ISRAEL</h1>
+        <h3>Since October 7th, there has been an escalation of rocket attacks targeting Israel, primarily originating from the Gaza Strip and Lebanon. </h3>
+        <p> today: <%= todaysDate %></p>
+    </div>
+    
+
+    <div id = "upper-box-container"> 
+      <div id = "last-week-alerts-container">
+        <p id = "graph-headline">The number of attacks on Israel this week</p>
+        <canvas id="myChart" style="width:100%;max-width:850px"></canvas>
+      </div>
+      <div id="last-attack-container">
+        <div id = "red-background">
+         <p class="last-alert-text"> Last Alert</p>
+        </div>
+       
+        <p class="last-alert-text"><%= theLastAlertLocation %></p> 
+        <p class="last-alert-text">  <%= theLastAlertDate %> </p>
+
+        <div id = "red-background2">
+          <p id="today-num-of-alerts-headline">The number of attacks against Israel today:</p>
+        </div>
+        <p id="today-num-of-alerts"><%=todaysAlertCount%></p>
+      </div>
+    </div>
+    
+    
+
+<script>
+  barColors = ["#448CD4", "#448CD4", "#448CD4", "#448CD4", "#448CD4", "#448CD4", "#448CD4"];
+
+  // Check if xValues and yValues are defined before rendering the chart
+  <% if (xValues && yValues) { %>
+    new Chart("myChart", {
+      type: "bar",
+      data: {
+        labels: <%- JSON.stringify(xValues) %>,
+        datasets: [{
+          backgroundColor: barColors,
+          data: <%- JSON.stringify(yValues) %>
+        }]
+      }
+    });
+  <% } %>
+</script>
+   
+
+    
+</body>
+</html>
