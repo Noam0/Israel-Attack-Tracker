@@ -2,20 +2,137 @@
     font-family: 'Outfit', sans-serif;
 }
 
+body{
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    
+}
+
+#body-container{
+
+display: flex;
+flex-direction: column;
+align-items: center;
+row-gap: 40px;
+}
 
 #headline-container{
+    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
+    background-color: rgb(0, 22, 41);
+    
+
+ 
 }
+
+#about-container-container{
+display: flex;
+flex-direction: column;
+gap: 0px;
+width: 100%;
+height: 58vh;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
+min-height: 58vh; 
+}
+
 #page-headline {
-    font-size: 50px; 
+    font-size: 45px; 
+    color: #f5f5f5;
+}
+#date{
+  color: #f5f5f5;
+}
+
+#light-blue-line{
+  position: relative;
+  background-color: #007ccf;
+  width: 100%;
+  height:4px;
+}
+#explaination-text{
+    font-size: 25px;
+}
+#About-text{
+font-size: 5vh;
+margin-bottom: -17px;
+}
+
+#about-container {
+  position: relative;
+  top: 3vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#about-container p {
+  position: relative;
+  flex: 1;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #2e2e2e;
+ 
+}
+
+#hamas-rockets-img {
+  position: relative;
+  right: 25px;
+  max-width: 28%;
+  height: auto;
+  margin-left: 100px; 
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
 }
 
 
-#upper-box-container {
+
+
+
+
+
+
+
+
+/*NAVIGATION BAR */
+
+#navigation-bar-container {
+  background-color: #ffffff;
+  padding: 10px;
+  position: relative;
+  bottom:0;
+  top:100px;
+  width: 100%;
+
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around; /* Center the items horizontally */
+}
+
+nav li {
+  margin-right: 20px;
+ 
+}
+
+nav a {
+  text-decoration: none;
+  color: rgb(29, 29, 29);
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+nav a:hover {
+  color: #ffc107; /* Change color on hover, adjust as needed */
+}
+
+
+#chart-container {
     display: flex;
     flex-direction: row;
     gap: -20px;
@@ -25,7 +142,7 @@
 
 #graph-headline{
 
-    font-size: 30px;
+    font-size: 50px;
 }
 
 #last-week-alerts-container {
@@ -35,6 +152,12 @@
     align-items: center;
     
 }
+
+#myChart{
+
+    
+}
+    
 
 #last-attack-container {
     
@@ -82,3 +205,110 @@
     top: -25px;
     
 }
+
+
+/* -------------- */
+
+
+
+#alertsContainer {
+    position: relative;
+    top: 100px;
+    max-width:50%;
+    margin: auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styles for the form within the container */
+  #dataRequestForm {
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for form labels */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  /* Styles for form input and select elements */
+  .formInput,
+  .formSelect {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Styles for the interval buttons container */
+  #intervalButtons {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for each interval button */
+  .intervalButton {
+    flex: 1;
+    margin-right: 10px;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  /* Style for the checked interval button */
+  .intervalButton input:checked + span {
+    background-color: #297fb8;
+  }
+  
+  /* Remove default radio button styles */
+  .intervalButton input {
+    display: none;
+  }
+  
+  /* Styles for the submit button */
+  .submitButton {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Styles for the list of alerts */
+  .alertsList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Styles for each alert item in the list */
+  .alertItem {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styles for alert location and date */
+  .alertLocation,
+  .alertDate {
+    margin: 0;
+  }
+  
+  /* Optional: Add hover effect for better user feedback */
+  .alertItem:hover {
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+  }

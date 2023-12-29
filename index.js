@@ -20,6 +20,8 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+var alerts = {};
+
 
 
 
@@ -79,7 +81,7 @@ app.get("/", async (req, res) => {
         todaysAlertCount,
         xValues: xValues,
         yValues: yValuesQuery,
-      
+        alerts
       });
       
   } catch (error) {
@@ -93,6 +95,52 @@ app.get("/", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+
+
+app.get('/api/data', async (req, res) => {
+  try {
+    const city = req.query.city;
+    const interval = req.query.interval;
+    console.log(interval);
+
+    let query;
+    let params;
+
+    // Generate the query based on the selected interval
+    switch (interval) {
+      case 'day':
+        query = 'SELECT * FROM alerts WHERE location LIKE $1 AND alertdate::date = CURRENT_DATE';
+        params = [`%${city}%`];
+        break;
+      case 'weekly':
+        query = 'SELECT * FROM alerts WHERE location LIKE $1 AND alertdate >= CURRENT_DATE - interval \'1 week\'';
+        params = [`%${city}%`];
+        break;
+      case 'monthly':
+        query = 'SELECT * FROM alerts WHERE location LIKE $1 AND EXTRACT(MONTH FROM alertdate) = EXTRACT(MONTH FROM CURRENT_DATE)';
+        params = [`%${city}%`];
+        break;
+      default:
+        // Default to fetching all data
+        query = 'SELECT * FROM alerts WHERE location LIKE $1';
+        params = [`%${city}%`];
+    }
+
+    const result = await db.query(query, params);
+    alerts = result.rows;
+
+    // Do something with the alerts (send them to the client, render a view, etc.)
+    console.log(alerts);
+    res.redirect("/");
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+
+
 
 
 //FUNCTIONS :

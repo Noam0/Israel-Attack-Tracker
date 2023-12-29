@@ -14,21 +14,43 @@
     </script>
 </head>
 <body>
+
+  
+  
     <div id="headline-container">
         <h1 id="page-headline">ATTACK ALERTS ON ISRAEL</h1>
-        <h3>Since October 7th, there has been an escalation of rocket attacks targeting Israel, primarily originating from the Gaza Strip and Lebanon. </h3>
-        <p> today: <%= todaysDate %></p>
+        <p id = "date"> Today: <%= todaysDate %></p>
     </div>
+    <div id="light-blue-line"></div>
+    
+  <div id = "about-container-container">
+    <h2 id="About-text">About</h2>
+    <div id = "about-container">
+      <p id="all-about-text">Since October 7th, 2023, Israel is under attack with a surge in incidents reported in cities like Jerusalem, Tel Aviv, Haifa, and others. Rockets launched from the northern and southern borders, particularly from Lebanon in the north and Gaza in the south, pose threats to civilian populations, infrastructure, and regional stability. Timely reporting is crucial for both local and international audiences to stay informed about the evolving security situation. This web of data provides an up-to-date account of alerts and attacks, serving as a valuable resource for researchers, journalists, and concerned citizens. The documentation contributes to a broader understanding of the complexities and potential humanitarian consequences of these attacks on Israel from both its northern and southern borders. </p>
+      <img id="hamas-rockets-img" src = "hamas rockets.jpg">
+    </div> 
     
 
-    <div id = "upper-box-container"> 
-      <div id = "last-week-alerts-container">
-        <p id = "graph-headline">The number of attacks on Israel this week</p>
-        <canvas id="myChart" style="width:100%;max-width:850px"></canvas>
-      </div>
+    <div id="navigation-bar-container">
+      <nav>
+        <ul>
+          <li><a href="#Last-Alert">Last Alert</a></li>
+          <li><a href="#This-Week-Attacks">This Week Attacks</a></li>
+          <li><a href="#View-History">View History</a></li>
+       </ul>
+      </nav>
+    </div>
+  </div>
+
+
+<div id = "body-container">
+
+
       <div id="last-attack-container">
         <div id = "red-background">
+        <section id="Last-Alert">
          <p class="last-alert-text"> Last Alert</p>
+         </section>
         </div>
        
         <p class="last-alert-text"><%= theLastAlertLocation %></p> 
@@ -39,11 +61,70 @@
         </div>
         <p id="today-num-of-alerts"><%=todaysAlertCount%></p>
       </div>
+
+
+
+    <div id = "chart-container"> 
+      <div id = "last-week-alerts-container">
+      <section id="This-Week-Attacks">
+        <p id = "graph-headline">The number of attacks on Israel this week</p>
+        </section>
+        <canvas id="myChart" style="width:100%;max-width:900px"></canvas>
+      </div>
     </div>
+
     
     
 
+<div id="alertsContainer">
+  <section id="View-History">
+  <h2>Select a city to view alarm history</h2>
+  </section>
+  <form id="dataRequestForm" action="/api/data" method="get">
+    <label for="cityInput">City:</label>
+    <input type="text" id="cityInput" name="city" class="formInput" required>
+
+    <div id="intervalButtons">
+      <label class="intervalButton">
+        <input type="radio" name="interval" value="day" checked>
+        In the past day
+      </label>
+      <label class="intervalButton">
+        <input type="radio" name="interval" value="weekly">
+        In the past week
+      </label>
+      <label class="intervalButton">
+        <input type="radio" name="interval" value="monthly">
+        In the past month
+      </label>
+    </div>
+
+    <button type="submit" class="submitButton">Submit</button>
+  </form>
+
+  <% if (locals.alerts && locals.alerts.length > 0) { %>
+    <div id="alertsListContainer">
+      <ul id="alertsList" class="alertsList">
+        <% if (locals.alerts && locals.alerts.length > 0) { %>
+          <% alerts.forEach((alert) => { %>
+            <li class="alertItem">
+              <p class="alertLocation"><%= alert.location %></p>
+              <p class="alertDate"><%= alert.alertdate %></p>
+            </li>
+          <% }); %>
+        <% } %>
+      </ul>
+    </div>
+  <% } %>
+</div>
+
+
+
+ </div> <!--- body container-->
+
 <script>
+
+//CHART.JS SCRIPT
   barColors = ["#448CD4", "#448CD4", "#448CD4", "#448CD4", "#448CD4", "#448CD4", "#448CD4"];
 
   // Check if xValues and yValues are defined before rendering the chart
@@ -59,6 +140,28 @@
       }
     });
   <% } %>
+
+
+
+
+
+
+//THE NAVIGATION ANIMATION
+ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+
+
+
+
+
+
 </script>
    
 
